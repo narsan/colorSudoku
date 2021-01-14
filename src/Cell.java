@@ -8,6 +8,14 @@ public class Cell {
         this.color = color ;
     }
 
+    public void setNumber(char number) {
+        this.number = number;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
+    }
+
     public char getNumber() {
         return number;
     }

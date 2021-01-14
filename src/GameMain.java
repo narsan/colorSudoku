@@ -40,7 +40,6 @@ public class GameMain {
                 }else {
                     System.out.print("|" + sudoku.getSudoku()[i][j].getNumber() + sudoku.getSudoku()[i][j].getColor());
                 }
-
             }
         }
     }
@@ -50,6 +49,8 @@ public class GameMain {
 
         int n = get_Input();
         print_Board(n);
+        System.out.println("\n");
+        sudoku.solve();
     }
 }
 
@@ -58,3 +59,8 @@ public class GameMain {
 //*# 2g 3y
 //2g 3y 1r
 //3r 1g 2y
+//5 3
+//r g b y p
+//1# *b *#
+//*# 3r *#
+//*g 1# *#
