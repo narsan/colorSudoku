@@ -1,14 +1,14 @@
 public class Cell {
-    private int number;
+    private char number;
     private char color;
 
 
-    public Cell (int number , char color){
+    public Cell (char number , char color){
         this.number = number ;
         this.color = color ;
     }
 
-    public int getNumber() {
+    public char getNumber() {
         return number;
     }
 
@@ -16,11 +16,5 @@ public class Cell {
         return color;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
-    public void setColor(char color) {
-        this.color = color;
-    }
 }
