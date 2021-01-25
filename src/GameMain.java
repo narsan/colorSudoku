@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -13,9 +14,16 @@ public class GameMain {
         Scanner sc = new Scanner(System.in);
         String[] input = sc.nextLine().split(" ");
         String[] colors = sc.nextLine().split(" ");
+       // HashMap <Character , Integer> priorityMap = new HashMap <Character, Integer>();
+
         Integer m = Integer.valueOf(input[0]);
         Integer n = Integer.valueOf(input[1]);
         sudoku = new Sudoku(new Cell[n][n], n);
+        for (int i = 0; i <colors.length ; i++) {
+            sudoku.getPriorityMap().put(colors[i].charAt(0) , colors.length - i);
+        }
+//        System.out.println(sudoku.getPriorityMap().get('p'));
+//        System.out.println(sudoku.getPriorityMap().get('b'));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 String val = sc.next();
@@ -25,6 +33,8 @@ public class GameMain {
                 sudoku.getSudoku()[i][j] = cell;
             }
         }
+        System.out.println("sudoku.getSudoku()[0][1].getColor() = " + sudoku.getSudoku()[0][1].getColor());
+        System.out.println("priorityMap = " + sudoku.getPriorityMap().get(sudoku.getSudoku()[0][1].getColor()));
         return n;
     }
 
