@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-
+import java.util.*;
 
 
 public class GameMain {
@@ -20,9 +17,10 @@ public class GameMain {
         Integer n = Integer.valueOf(input[1]);
         sudoku = new Sudoku(new Cell[n][n], n);
         for (int i = 0; i <colors.length ; i++) {
-            sudoku.getPriorityMap().put(colors[i].charAt(0) , colors.length - i);
+            sudoku.getPriorityMap().put(colors[colors.length - i-1].charAt(0) , i+1);
         }
-//        System.out.println(sudoku.getPriorityMap().get('p'));
+
+//        System.out.println(sudoku.getPriorityMap());
 //        System.out.println(sudoku.getPriorityMap().get('b'));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -33,8 +31,7 @@ public class GameMain {
                 sudoku.getSudoku()[i][j] = cell;
             }
         }
-        System.out.println("sudoku.getSudoku()[0][1].getColor() = " + sudoku.getSudoku()[0][1].getColor());
-        System.out.println("priorityMap = " + sudoku.getPriorityMap().get(sudoku.getSudoku()[0][1].getColor()));
+
         return n;
     }
 
@@ -45,7 +42,7 @@ public class GameMain {
 
                 if (sudoku.getSudoku()[i][j] == null)
                     System.out.print("| ");
-                else if (sudoku.getSudoku()[i][j] != null && (j + 1) % 3 == 0) {
+                else if (sudoku.getSudoku()[i][j] != null && (j + 1) % n == 0) {
                     System.out.print("|" + sudoku.getSudoku()[i][j].getNumber() + sudoku.getSudoku()[i][j].getColor() + "|");
                 }else {
                     System.out.print("|" + sudoku.getSudoku()[i][j].getNumber() + sudoku.getSudoku()[i][j].getColor());
@@ -64,13 +61,14 @@ public class GameMain {
     }
 }
 
+
 //3 3
-//y g r
-//*# 2g 3y
-//2g 3y 1r
-//3r 1g 2y
-//5 3
-//r g b y p
+//r g b
 //1# *b *#
 //*# 3r *#
 //*g 1# *#
+//5 3
+//r g b y p
+//*# *# *#
+//*# *# *#
+//*# *# *#

@@ -1,7 +1,14 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Cell {
     private char number;
     private char color;
+    private ArrayList <String> domain = new ArrayList<>();
 
+    public ArrayList<String> getDomain() {
+        return domain;
+    }
 
     public Cell (char number , char color){
         this.number = number ;
