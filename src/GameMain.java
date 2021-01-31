@@ -20,7 +20,7 @@ public class GameMain {
             sudoku.getPriorityMap().put(colors[colors.length - i-1].charAt(0) , i+1);
         }
 
-//        System.out.println(sudoku.getPriorityMap());
+        System.out.println(sudoku.getPriorityMap());
 //        System.out.println(sudoku.getPriorityMap().get('b'));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
