@@ -1,20 +1,14 @@
 package SudokuGame;
 
-import java.util.ArrayList;
-
-
-public class Cell {
+class Cell {
     private char number;
     private char color;
-    private ArrayList <String> domain = new ArrayList<>();
+    int n ;
 
-    public ArrayList<String> getDomain() {
-        return domain;
-    }
-
-    public Cell (char number , char color){
+    public Cell (char number , char color , int n){
         this.number = number ;
         this.color = color ;
+        this.n = n ;
     }
 
     public void setNumber(char number) {
@@ -32,6 +26,5 @@ public class Cell {
     public char getColor() {
         return color;
     }
-
 
 }
