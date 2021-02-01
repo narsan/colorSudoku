@@ -57,9 +57,6 @@ public class ForwardChecking {
         }
         int i = pos / n;
         int j = pos % n;
-//        System.out.println("in fc");
-//        System.out.println("i = " + i);
-//        System.out.println("j = " + j);
         if (sudoku.getSudoku()[i][j].getColor() != '#' && sudoku.getSudoku()[i][j].getNumber() != '*') {
             return isValid(sudoku, pos + 1);
         }
@@ -70,14 +67,9 @@ public class ForwardChecking {
                 int x = Character.getNumericValue(s.charAt(0));
                 sudoku.getSudoku()[i][j].setColor(c);
                 sudoku.getSudoku()[i][j].setNumber((char) (x + '0'));
-//                if (sudoku.CanPutNum(i, j, x) && sudoku.CanPutColor(i, j, c)) {
                 if (sudoku.CheckNeighbour(i, j)) {
                     if (isValid(sudoku, pos + 1)) {
                         return true;
-//                        } else {
-////                            sudoku.getSudoku()[i][j].getDomain().remove(s);
-////                            return false;
-//                        }
                     }
                 }
 
@@ -93,9 +85,6 @@ public class ForwardChecking {
 
                         if (isValid(sudoku, pos + 1)) {
                             return true;
-//                        } else {
-////                            sudoku.getSudoku()[i][j].getDomain().remove(s);
-////                            return false;
                         }
                     }
                 }
@@ -109,9 +98,6 @@ public class ForwardChecking {
                     if (sudoku.CheckNeighbour(i, j)) {
                         if (isValid(sudoku, pos + 1)) {
                             return true;
-//                        } else {
-//                            sudoku.getSudoku()[i][j].getDomain().remove(s);
-//                            return false;
                         }
                     }
                 }

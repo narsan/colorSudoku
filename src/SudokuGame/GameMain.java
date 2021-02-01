@@ -3,7 +3,7 @@ package SudokuGame;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainGame {
+public class GameMain {
     private static Sudoku sudoku;
 
     private static int get_Input() {
