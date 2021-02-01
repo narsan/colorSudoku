@@ -1,8 +1,12 @@
+package SudokuGame;
+
+import SudokuGame.Cell;
+
 import java.util.*;
 
 public class Sudoku {
 
-    public Map<Character, Integer> priorityMap = new LinkedHashMap<>();
+    private Map<Character, Integer> priorityMap = new LinkedHashMap<>();
 
     public Cell[][] getSudoku() {
         return sudoku;
@@ -72,6 +76,7 @@ public class Sudoku {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -267,44 +272,42 @@ public class Sudoku {
                 char c = sudoku[i][j].getDomain().get(k).charAt(1);
                 int x = Character.getNumericValue(sudoku[i][j].getDomain().get(k).charAt(0));
                 if (CanPut(i, j, x, c)) {
-                    sudoku[i][j].setColor(c);
-                    sudoku[i][j].setNumber((char) (x + '0'));
                     if (CheckNeighbour(i, j)) {
+                        sudoku[i][j].setColor(c);
+                        sudoku[i][j].setNumber((char) (x + '0'));
                         if (backtrackSolve()) {
                             return true;
+                        } else {
+                            sudoku[i][j].setNumber('*');
+                            sudoku[i][j].setColor('#');
                         }
-                    } else {
-                        sudoku[i][j].setNumber('*');
-                        sudoku[i][j].setColor('#');
                     }
 
                 }
             }
-        }
-
-        else if (sudoku[i][j].getNumber() == '*') {
+        } else if (sudoku[i][j].getNumber() == '*') {
             for (int x = 1; x < n + 1; x++) {
                 if (CanPutNum(i, j, x)) {
-                    sudoku[i][j].setNumber((char) (x + '0'));
                     if (CheckNeighbour(i, j)) {
+                        sudoku[i][j].setNumber((char) (x + '0'));
                         if (backtrackSolve()) {
                             return true;
                         }
+                        sudoku[i][j].setNumber('*');
                     }
-                    sudoku[i][j].setNumber('*');
                 }
 
             }
         } else if (sudoku[i][j].getColor() == '#') {
             for (Character c : priorityMap.keySet()) {
                 if (CanPutColor(i, j, c)) {
-                    sudoku[i][j].setColor(c);
                     if (CheckNeighbour(i, j)) {
+                        sudoku[i][j].setColor(c);
                         if (backtrackSolve()) {
                             return true;
                         }
+                        sudoku[i][j].setColor('#');
                     }
-                    sudoku[i][j].setColor('#');
                 }
             }
         }

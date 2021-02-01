@@ -1,9 +1,13 @@
+package SudokuGame;
+
+import SudokuGame.Cell;
+
 import java.util.*;
 
 
 public class GameMain {
-    private static Sudoku sudoku;
 
+    private static Sudoku sudoku;
     private static int get_Input() {
         char number;
         char color;
@@ -20,7 +24,7 @@ public class GameMain {
             sudoku.getPriorityMap().put(colors[colors.length - i-1].charAt(0) , i+1);
         }
 
-        System.out.println(sudoku.getPriorityMap());
+//        System.out.println(sudoku.getPriorityMap());
 //        System.out.println(sudoku.getPriorityMap().get('b'));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -62,8 +66,8 @@ public class GameMain {
 }
 
 
-//3 3
-//r g b
+//5 3
+//r g b y p
 //1# *b *#
 //*# 3r *#
 //*g 1# *#

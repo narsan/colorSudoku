@@ -1,5 +1,7 @@
+package SudokuGame;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class Cell {
     private char number;
