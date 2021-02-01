@@ -1,27 +1,28 @@
 package SudokuGame;
 
-import SudokuGame.Cell;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-import java.util.*;
-
-
-public class GameMain {
-
+public class MainGame {
     private static Sudoku sudoku;
+
     private static int get_Input() {
         char number;
         char color;
+        ArrayList<String> domain0;
+        ArrayList<String> domain1;
+        ArrayList<String> domain2;
 
         Scanner sc = new Scanner(System.in);
         String[] input = sc.nextLine().split(" ");
         String[] colors = sc.nextLine().split(" ");
-       // HashMap <Character , Integer> priorityMap = new HashMap <Character, Integer>();
+        // HashMap <Character , Integer> priorityMap = new HashMap <Character, Integer>();
 
         Integer m = Integer.valueOf(input[0]);
         Integer n = Integer.valueOf(input[1]);
         sudoku = new Sudoku(new Cell[n][n], n);
-        for (int i = 0; i <colors.length ; i++) {
-            sudoku.getPriorityMap().put(colors[colors.length - i-1].charAt(0) , i+1);
+        for (int i = 0; i < colors.length; i++) {
+            sudoku.getPriorityMap().put(colors[colors.length - i - 1].charAt(0), i + 1);
         }
 
 //        System.out.println(sudoku.getPriorityMap());
@@ -31,7 +32,7 @@ public class GameMain {
                 String val = sc.next();
                 color = val.charAt(1);
                 number = val.charAt(0);
-                Cell cell = new Cell(number, color);
+                Cell cell = new Cell(number, color, n);
                 sudoku.getSudoku()[i][j] = cell;
             }
         }
@@ -39,40 +40,41 @@ public class GameMain {
         return n;
     }
 
-    private static void print_Board(int n) {
-        for (int i = 0; i < sudoku.getSudoku().length; i++) {
-            System.out.print("\n");
-            for (int j = 0; j < sudoku.getSudoku().length; j++) {
-
-                if (sudoku.getSudoku()[i][j] == null)
-                    System.out.print("| ");
-                else if (sudoku.getSudoku()[i][j] != null && (j + 1) % n == 0) {
-                    System.out.print("|" + sudoku.getSudoku()[i][j].getNumber() + sudoku.getSudoku()[i][j].getColor() + "|");
-                }else {
-                    System.out.print("|" + sudoku.getSudoku()[i][j].getNumber() + sudoku.getSudoku()[i][j].getColor());
+    private static void printBoard(int n, Cell[][] c) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (c[i][j] != null && (j + 1) % n == 0) {
+                    System.out.print("|" + c[i][j].getNumber() + c[i][j].getColor() + "|");
+                } else {
+                    System.out.print("|" + c[i][j].getNumber() + c[i][j].getColor());
                 }
             }
+            System.out.println();
         }
     }
 
-
     public static void main(String[] args) {
-
         int n = get_Input();
-        print_Board(n);
-        System.out.println("\n");
-        sudoku.solve();
+        Sudoku sudokuToSolve;
+        Sudoku sudokuToSolve1;
+        Sudoku sudokuToSolve2;
+        BackTracking bt = new BackTracking(n);
+        ForwardChecking fc = new ForwardChecking(n);
+        MRV mrv = new MRV(n);
+        sudokuToSolve = mrv.MRVSearch(sudoku);
+        if (sudokuToSolve == null) {
+            printBoard(n, sudoku.getSudoku());
+        } else {
+            sudokuToSolve1 = fc.forwardChecking(sudokuToSolve);
+            sudokuToSolve2 = bt.backTracking(sudokuToSolve1);
+
+
+//        printBoard(n , sudokuToSolve.getSudoku());
+//        printBoard(n , sudokuToSolve1.getSudoku());
+//        printBoard(n , sudokuToSolve1.getSudoku());
+            printBoard(n, sudokuToSolve2.getSudoku());
+//        mrv.solve(sudoku);
+        }
+
     }
 }
-
-
-//5 3
-//r g b y p
-//1# *b *#
-//*# 3r *#
-//*g 1# *#
-//5 3
-//r g b y p
-//*# *# *#
-//*# *# *#
-//*# *# *#
