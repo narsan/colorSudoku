@@ -16,7 +16,6 @@ public class GameMain {
         Scanner sc = new Scanner(System.in);
         String[] input = sc.nextLine().split(" ");
         String[] colors = sc.nextLine().split(" ");
-        // HashMap <Character , Integer> priorityMap = new HashMap <Character, Integer>();
 
         Integer m = Integer.valueOf(input[0]);
         Integer n = Integer.valueOf(input[1]);
@@ -25,8 +24,6 @@ public class GameMain {
             sudoku.getPriorityMap().put(colors[colors.length - i - 1].charAt(0), i + 1);
         }
 
-//        System.out.println(sudoku.getPriorityMap());
-//        System.out.println(sudoku.getPriorityMap().get('b'));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 String val = sc.next();
@@ -67,14 +64,7 @@ public class GameMain {
         } else {
             sudokuToSolve1 = fc.forwardChecking(sudokuToSolve);
             sudokuToSolve2 = bt.backTracking(sudokuToSolve1);
-
-
-//        printBoard(n , sudokuToSolve.getSudoku());
-//        printBoard(n , sudokuToSolve1.getSudoku());
-//        printBoard(n , sudokuToSolve1.getSudoku());
             printBoard(n, sudokuToSolve2.getSudoku());
-//        mrv.solve(sudoku);
         }
-
     }
 }
